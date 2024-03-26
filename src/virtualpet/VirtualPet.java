@@ -39,6 +39,7 @@ public class VirtualPet {
         System.out.print("Password: ");
         String password = kb.nextLine().toLowerCase();
         
+        //If correct username and password
         if (username.equals("snoopy") && password.equals("toto")) {
             //Main menu and options
             System.out.println("________________MAIN MENU________________");
