@@ -4,6 +4,7 @@
  */
 package virtualpet;
 import java.util.*;
+import java.lang.Math;
 /**
  *
  * @author michael.roy-diclemen
@@ -15,6 +16,13 @@ public class VirtualPet {
      */
     public static void main(String[] args) {
         Scanner kb = new Scanner(System.in);
+        Random r = new Random();
+        
+        final String CORRECT_USERNAME = "snoopy";
+        final String CORRECT_PASSWORD = "toto";
+        final String CONSONANT_LIST = "bcdfghjklmnprstvwyz";
+        
+        
         
         //Splash screen
         System.out.println("                       _____^__");
@@ -40,7 +48,7 @@ public class VirtualPet {
         String password = kb.nextLine().toLowerCase();
         
         //If correct username and password
-        if (username.equals("snoopy") && password.equals("toto")) {
+        if (username.equals(CORRECT_USERNAME) && password.equals(CORRECT_PASSWORD)) {
             //Main menu and options
             System.out.println("________________MAIN MENU________________");
             System.out.println("1. Start");
@@ -63,12 +71,34 @@ public class VirtualPet {
                         case "dog":
                             //Choice of Dog
                             System.out.println("\n\nSELECTED: DOG");
+                            System.out.println("\n\n__________________NAME__________________");
+                            
                             break;
                         case "2":
-                        case "fish":
+                        case "rock":
                             //Choice of Fish
-                            System.out.println("\n\nSELECTED: FISH");
+                            System.out.println("\n\nSELECTED: ROCK");
                             break;
+                    }
+                 
+                    System.out.println("Would you like to name your " + animalChoice + "? (y/n)");
+                    String namingChoice = kb.nextLine().toLowerCase();
+
+                    if (namingChoice.equals("y")) {
+                        System.out.println("What would you like to name it?");
+                        String petName = kb.nextLine().toUpperCase();
+                    } else if (namingChoice.equals("n")) {
+                        int numOfLetters = r.nextInt(4) + 4;
+                        String petName = "";
+
+                        for (int i = 0; i < numOfLetters; i++) {
+                            if (i == 0) {
+                                char consonantUsed = CONSONANT_LIST.charAt(r.nextInt(CONSONANT_LIST.length()));
+                            }
+                            else if (i % 2 = 0) {
+                                gkgkh
+                            }
+                        }
                     }
                     break;
                 //Instruction menu
