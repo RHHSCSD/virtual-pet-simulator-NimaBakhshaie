@@ -60,10 +60,12 @@ public class VirtualPet {
                     switch (animalChoice) {
                         case "1":
                         case "dog":
+                            //Choice of Dog
                             System.out.println("\n\nSELECTED: DOG");
                             break;
                         case "2":
                         case "fish":
+                            //Choice of Fish
                             System.out.println("\n\nSELECTED: FISH");
                             break;
                     }
@@ -82,6 +84,7 @@ public class VirtualPet {
         }
     }
         else {
+            //Exiting Program if password is wrong
             System.out.println("WRONG USERNAME/PASSWORD");
             System.out.println("...EXITING PROGRAM...");
             System.exit(0);
