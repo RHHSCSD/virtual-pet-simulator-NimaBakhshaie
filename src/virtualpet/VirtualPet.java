@@ -20,7 +20,19 @@ public class VirtualPet {
         
         final String CORRECT_USERNAME = "snoopy";
         final String CORRECT_PASSWORD = "toto";
-        final String CONSONANT_LIST = "bcdfghjklmnprstvwyz";
+        final String CONSONANT_LIST = "BCDFGHJKLMNPRSTVWYZ";
+        final String VOWEL_LIST = "AEIOU";
+        
+        String petName = "";
+        
+        int statsPointsTotal = 100;
+        int maxFood = 0;
+        int maxHealth = 0;
+        int maxEnergy = 0;
+        int currentFood = 0;
+        int currentHealth = 0;
+        int currentEnergy = 0;
+        
         
         
         
@@ -63,7 +75,7 @@ public class VirtualPet {
                 case "start":
                     System.out.println("\n\n__________________START__________________");
                     System.out.println("1. Dog");
-                    System.out.println("2. Fish");
+                    System.out.println("2. Rock");
                     String animalChoice = kb.nextLine().toLowerCase();
 
                     switch (animalChoice) {
@@ -71,35 +83,73 @@ public class VirtualPet {
                         case "dog":
                             //Choice of Dog
                             System.out.println("\n\nSELECTED: DOG");
-                            System.out.println("\n\n__________________NAME__________________");
+                            
+                            maxEnergy = r.nextInt(10) + 21;
+                            maxFood = r.nextInt(10) + 21;
+                            maxHealth = r.nextInt(10) + 21;
+                            
+                            maxEnergy += statsPointsTotal - maxEnergy - maxFood - maxHealth;
+                            
+                            currentEnergy = maxEnergy;
+                            currentFood = maxFood;
+                            currentHealth = maxHealth;
                             
                             break;
                         case "2":
                         case "rock":
                             //Choice of Fish
                             System.out.println("\n\nSELECTED: ROCK");
+                            
+                            maxEnergy = r.nextInt(10) + 21;
+                            maxFood = r.nextInt(10) + 21;
+                            maxHealth = r.nextInt(10) + 21;
+                            
+                            maxHealth += statsPointsTotal - maxEnergy - maxFood - maxHealth;
+                            
+                            currentEnergy = maxEnergy;
+                            currentFood = maxFood;
+                            currentHealth = maxHealth;
+                            
                             break;
                     }
-                 
-                    System.out.println("Would you like to name your " + animalChoice + "? (y/n)");
+                    System.out.println("\n\n__________________NAME__________________");
+                    System.out.println("Would you like to name your Simupet? Selecting no will result in a randomized name. (y/n)");
                     String namingChoice = kb.nextLine().toLowerCase();
 
                     if (namingChoice.equals("y")) {
                         System.out.println("What would you like to name it?");
-                        String petName = kb.nextLine().toUpperCase();
+                        petName = kb.nextLine().toUpperCase();
                     } else if (namingChoice.equals("n")) {
-                        int numOfLetters = r.nextInt(4) + 4;
-                        String petName = "";
+                        int numOfLetters = (r.nextInt(3) + 1) * 2 + 2;
+                        
+                        int consonantPosition = r.nextInt(CONSONANT_LIST.length());
+                        char consonantUsed = CONSONANT_LIST.charAt(consonantPosition);
+                        int vowelPosition = r.nextInt(VOWEL_LIST.length());
+                        char vowelUsed = VOWEL_LIST.charAt(vowelPosition);
+                        
+                        double isDoubleVowel = Math.random();
+                        //double vowel randomly? What about name length? 6 char name?
 
                         for (int i = 0; i < numOfLetters; i++) {
                             if (i == 0) {
-                                char consonantUsed = CONSONANT_LIST.charAt(r.nextInt(CONSONANT_LIST.length()));
+                                petName = petName + consonantUsed;
                             }
-                            else if (i % 2 = 0) {
-                                gkgkh
+                            else if (i % 2 == 0) {
+                                petName = petName + consonantUsed;
+                                
+                            } else {
+                                petName = petName + vowelUsed;
                             }
                         }
                     }
+                    
+                    System.out.println("\n***Your Simupet, named " + petName + ", has been born!***\n");
+                    
+                    System.out.println("__________________HOME__________________");
+                    System.out.println("STATUS of " + petName + ":");
+                    System.out.println("Health: " + currentHealth + "/" + maxHealth);
+                    System.out.println("Energy: " + currentEnergy + "/" + maxEnergy);
+                    System.out.println("Food: " + currentFood + "/" + maxFood);
                     break;
                 //Instruction menu
                 case "2":
