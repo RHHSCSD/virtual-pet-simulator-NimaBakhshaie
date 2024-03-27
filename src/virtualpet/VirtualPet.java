@@ -4,7 +4,6 @@
  */
 package virtualpet;
 import java.util.*;
-import java.lang.Math;
 /**
  *
  * @author michael.roy-diclemen
@@ -120,7 +119,7 @@ public class VirtualPet {
                         System.out.println("What would you like to name it?");
                         petName = kb.nextLine().toUpperCase();
                     } else if (namingChoice.equals("n")) {
-                        int numOfLetters = (r.nextInt(3) + 1) * 2 + 2;
+                        int numOfLetters = r.nextInt(4) + 4;
                         
                         int consonantPosition = r.nextInt(CONSONANT_LIST.length());
                         char consonantUsed = CONSONANT_LIST.charAt(consonantPosition);
@@ -135,10 +134,19 @@ public class VirtualPet {
                                 petName = petName + consonantUsed;
                             }
                             else if (i % 2 == 0) {
+                                consonantPosition = r.nextInt(CONSONANT_LIST.length());
+                                consonantUsed = CONSONANT_LIST.charAt(consonantPosition);
                                 petName = petName + consonantUsed;
                                 
                             } else {
+                                vowelPosition = r.nextInt(VOWEL_LIST.length());
+                                vowelUsed = VOWEL_LIST.charAt(vowelPosition);
                                 petName = petName + vowelUsed;
+                                
+                                if (isDoubleVowel > 0.8) {
+                                    petName = petName + vowelUsed;
+                                }
+                             isDoubleVowel = Math.random();
                             }
                         }
                     }
