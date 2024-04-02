@@ -22,6 +22,9 @@ public class VirtualPet {
         final String CONSONANT_LIST = "BCDFGHJKLMNPRSTVWYZ";
         final String VOWEL_LIST = "AEIOU";
         
+        String username = "";
+        String password = "";
+        
         String petName = "";
         
         int statsPointsTotal = 100;
@@ -51,12 +54,17 @@ public class VirtualPet {
         System.out.println("                          |_|             ");
         System.out.println(" By: Nima Bakhshaie\n\n");
         
-        //Login page
-        System.out.println("__________________LOGIN__________________");
-        System.out.print("Username: ");
-        String username = kb.nextLine().toLowerCase();
-        System.out.print("Password: ");
-        String password = kb.nextLine().toLowerCase();
+        //Login page (with 3 attempts)
+        for (int i = 0; i < 3 &&  !(username.equals(CORRECT_USERNAME) && password.equals(CORRECT_PASSWORD)); i++) {
+            if (i > 0) {
+                System.out.println("Wrong password/username entered. You have " + (3 - i) + " attempt(s) remaining.");
+            }
+            System.out.println("__________________LOGIN__________________");
+            System.out.print("Username: ");
+            username = kb.nextLine().toLowerCase();
+            System.out.print("Password: ");
+            password = kb.nextLine().toLowerCase();
+        }
         
         //If correct username and password
         if (username.equals(CORRECT_USERNAME) && password.equals(CORRECT_PASSWORD)) {
@@ -69,7 +77,7 @@ public class VirtualPet {
             String menuChoice = kb.nextLine().toLowerCase();
 
             switch (menuChoice) {
-                //Start menu
+                //if start menu is user's choice
                 case "1":
                 case "start":
                     System.out.println("\n\n__________________START__________________");
@@ -96,7 +104,7 @@ public class VirtualPet {
                             break;
                         case "2":
                         case "rock":
-                            //Choice of Fish
+                            //Choice of Rock
                             System.out.println("\n\nSELECTED: ROCK");
                             
                             maxEnergy = r.nextInt(10) + 21;
@@ -111,14 +119,15 @@ public class VirtualPet {
                             
                             break;
                     }
+                    //Naming prompt for naming pet
                     System.out.println("\n\n__________________NAME__________________");
                     System.out.println("Would you like to name your Simupet? Selecting no will result in a randomized name. (y/n)");
                     String namingChoice = kb.nextLine().toLowerCase();
 
-                    if (namingChoice.equals("y")) {
+                    if (namingChoice.equals("y")) { //if user chooses to name the pet themselves
                         System.out.println("What would you like to name it?");
                         petName = kb.nextLine().toUpperCase();
-                    } else if (namingChoice.equals("n")) {
+                    } else if (namingChoice.equals("n")) { //Generating a random name if user doesn't want to name pet
                         int numOfLetters = r.nextInt(4) + 4;
                         
                         int consonantPosition = r.nextInt(CONSONANT_LIST.length());
@@ -127,7 +136,6 @@ public class VirtualPet {
                         char vowelUsed = VOWEL_LIST.charAt(vowelPosition);
                         
                         double isDoubleVowel = Math.random();
-                        //double vowel randomly? What about name length? 6 char name?
 
                         for (int i = 0; i < numOfLetters; i++) {
                             if (i == 0) {
@@ -174,7 +182,7 @@ public class VirtualPet {
     }
         else {
             //Exiting Program if password is wrong
-            System.out.println("WRONG USERNAME/PASSWORD");
+            System.out.println("TOO MANY WRONG ATTEMPTS TO LOG IN");
             System.out.println("...EXITING PROGRAM...");
             System.exit(0);
         }
